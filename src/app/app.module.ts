@@ -12,6 +12,7 @@ import { StudentsListComponent } from './shared/students-list/students-list.comp
 import { NavbarComponent } from './home/navbar/navbar.component';
 import { ClassroomDetailsComponent } from './classroom/classroom-details/classroom-details.component';
 import { StudentDetailsComponent } from './student/student-details/student-details.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { StudentDetailsComponent } from './student/student-details/student-detai
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

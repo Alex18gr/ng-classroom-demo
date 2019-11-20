@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Classroom} from '../models/classroom.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,6 @@ export class ClassroomService {
 
   getClassrooms() {
     const url = this.apiUrl + 'classrooms';
-    return this.httpClient.get(url);
+    return this.httpClient.get<Classroom[]>(url);
   }
 }

@@ -1,3 +1,17 @@
-<p>
-  classrooms-list works!
-</p>
+<div class="border border-secondary rounded-lg p-3">
+  <table class="table table-hover" *ngIf="classrooms">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let c of classrooms" (click)="onClassroomSelect(c)">
+      <th scope="row">{{c.id}}</th>
+      <td>{{c.name}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
