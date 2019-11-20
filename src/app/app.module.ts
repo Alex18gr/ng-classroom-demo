@@ -9,6 +9,9 @@ import { StudentsComponent } from './student/students/students.component';
 import { ClassroomEditModalComponent } from './shared/classroom-edit-modal/classroom-edit-modal.component';
 import { StudentEditModalComponent } from './shared/student-edit-modal/student-edit-modal.component';
 import { StudentsListComponent } from './shared/students-list/students-list.component';
+import { NavbarComponent } from './home/navbar/navbar.component';
+import { ClassroomDetailsComponent } from './classroom/classroom-details/classroom-details.component';
+import { StudentDetailsComponent } from './student/student-details/student-details.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { StudentsListComponent } from './shared/students-list/students-list.comp
     StudentsComponent,
     ClassroomEditModalComponent,
     StudentEditModalComponent,
-    StudentsListComponent
+    StudentsListComponent,
+    NavbarComponent,
+    ClassroomDetailsComponent,
+    StudentDetailsComponent
   ],
   imports: [
     BrowserModule,
