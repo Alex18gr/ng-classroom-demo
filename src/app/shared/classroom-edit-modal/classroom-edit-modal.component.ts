@@ -17,6 +17,7 @@ export class ClassroomEditModalComponent implements OnInit {
     name: new FormControl('')
   });
   savingData = false;
+  editMode = false;
   currentClassroom: Classroom;
   title = '';
 
@@ -44,8 +45,10 @@ export class ClassroomEditModalComponent implements OnInit {
     $(this.editModal.nativeElement).modal();
     if (classroom) {
       this.title = 'Edit Classroom';
+      this.editMode = true;
     } else {
       this.title = 'Create new Classroom';
+      this.editMode = false;
     }
     this.initForm(classroom);
   }
@@ -54,21 +57,39 @@ export class ClassroomEditModalComponent implements OnInit {
     this.currentClassroom = null;
     this.savingData = false;
     this.title = '';
+    this.editMode = false;
     $(this.editModal.nativeElement).modal('hide');
   }
 
   onSaveChanges() {
     this.currentClassroom.name = this.classroomForm.getRawValue().name;
     this.savingData = true;
+    if (this.editMode) {
+      this.updateClassroom();
+    } else {
+      this.saveClassroom();
+    }
+    // this.editFormSubmitted.emit(this.currentClassroom);
+    // this.hideModal();
+  }
+
+  saveClassroom() {
     this.classroomService.saveClassroom(this.currentClassroom).subscribe((data: Classroom) => {
         this.editFormSubmitted.emit(data);
         console.log(data);
         this.hideModal();
-    },
+      },
       (error => {
         this.savingData = false;
       }));
-    // this.editFormSubmitted.emit(this.currentClassroom);
-    // this.hideModal();
+  }
+
+  private updateClassroom() {
+    this.classroomService.updateClassroom(this.currentClassroom).subscribe((data: Classroom) => {
+      this.editFormSubmitted.emit(data);
+      this.hideModal();
+    }, error => {
+      this.savingData = false;
+    });
   }
 }

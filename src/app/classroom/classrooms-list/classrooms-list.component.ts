@@ -11,6 +11,7 @@ export class ClassroomsListComponent implements OnInit {
   @Input() classrooms: Classroom[];
   @Output() selectedClassroomChanged = new EventEmitter<Classroom>();
   @Output() editSelected = new EventEmitter<Classroom>();
+  @Output() deleteSelected = new EventEmitter<Classroom>();
 
   constructor(private router: Router,
               private route: ActivatedRoute) { }

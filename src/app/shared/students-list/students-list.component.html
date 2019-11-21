@@ -11,7 +11,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let s of students" (click)="onStudentSelected(s)">
+    <tr *ngFor="let s of students">
       <th scope="row">{{s.id}}</th>
       <td>{{s.firstName}}</td>
       <td>{{s.lastName}}</td>
@@ -19,8 +19,9 @@
       <td>{{s.birthDate | date: 'mediumDate'}}</td>
       <td>
         <div class="btn-group btn-group-sm" role="group">
-          <button class="btn btn-sm btn-warning">Edit</button>
-          <button class="btn btn-sm btn-danger">Delete</button>
+          <button class="btn btn-sm btn-warning" (click)="editSelected.emit(s)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteSelected.emit(s)">Delete</button>
+          <button class="btn btn-sm btn-primary" (click)="onStudentSelected(s)">Details</button>
         </div>
       </td>
     </tr>

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Student} from '../../models/student.model';
 import {Router} from '@angular/router';
 
@@ -9,6 +9,8 @@ import {Router} from '@angular/router';
 })
 export class StudentsListComponent implements OnInit {
   @Input() students: Student[];
+  @Output() editSelected = new EventEmitter<Student>();
+  @Output() deleteSelected = new EventEmitter<Student>();
 
   constructor(private router: Router) { }
 

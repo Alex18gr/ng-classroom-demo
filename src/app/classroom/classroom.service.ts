@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Classroom} from '../models/classroom.model';
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClassroomService {
+  classroomDataChanged = new Subject<any>();
 
   constructor(private httpClient: HttpClient) { }
 
@@ -24,5 +26,10 @@ export class ClassroomService {
   saveClassroom(classroom: Classroom) {
     const url = this.apiUrl + 'classrooms';
     return this.httpClient.post<Classroom>(url, classroom);
+  }
+
+  updateClassroom(classroom: Classroom) {
+    const url = this.apiUrl + 'classrooms/' + classroom.id;
+    return this.httpClient.put<Classroom>(url, classroom);
   }
 }
