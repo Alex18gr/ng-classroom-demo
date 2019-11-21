@@ -15,7 +15,12 @@
 
           <div class="form-group">
             <label for="firstNameField">Classroom Name</label>
-            <input type="text" class="form-control" id="firstNameField" placeholder="Enter Classroom Name" formControlName="name">
+            <input type="text" class="form-control"
+                   [ngClass]="{'is-invalid': isInvalidControlCondition(classroomForm.controls.name)}"
+                   id="firstNameField" placeholder="Enter Classroom Name" formControlName="name">
+            <div class="invalid-feedback" *ngIf="isInvalidControlCondition(classroomForm.controls.name)">
+              The field is required
+            </div>
           </div>
 
         </form>
@@ -23,7 +28,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="onSaveChanges()" [disabled]="savingData">
+        <button type="button" class="btn btn-primary" (click)="onSaveChanges()" [disabled]="savingData || classroomForm.invalid">
           <ng-container *ngIf="savingData">
             Saving Changes...<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           </ng-container>

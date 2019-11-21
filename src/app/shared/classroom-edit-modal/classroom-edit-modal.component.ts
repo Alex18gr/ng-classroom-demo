@@ -1,5 +1,5 @@
 import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Classroom} from '../../models/classroom.model';
 import {ClassroomService} from '../../classroom/classroom.service';
 
@@ -13,9 +13,7 @@ declare var $: any;
 export class ClassroomEditModalComponent implements OnInit {
   @ViewChild('modal', {static: false}) editModal: ElementRef;
   @Output() editFormSubmitted = new EventEmitter<Classroom>();
-  classroomForm = new FormGroup({
-    name: new FormControl('')
-  });
+  classroomForm: FormGroup;
   savingData = false;
   editMode = false;
   currentClassroom: Classroom;
@@ -24,12 +22,15 @@ export class ClassroomEditModalComponent implements OnInit {
   constructor(private classroomService: ClassroomService) { }
 
   ngOnInit() {
+    this.initForm();
 
   }
 
   initForm(classroom?: Classroom) {
     this.classroomForm = new FormGroup({
-      name: new FormControl('')
+      name: new FormControl('', [
+        Validators.required
+      ])
     });
     if (classroom) {
       this.currentClassroom = classroom;
@@ -91,5 +92,13 @@ export class ClassroomEditModalComponent implements OnInit {
     }, error => {
       this.savingData = false;
     });
+  }
+
+  formTouchedCondition(control: AbstractControl) {
+    return control.invalid && (control.dirty || control.touched);
+  }
+
+  isInvalidControlCondition(control: AbstractControl) {
+    return control.invalid && this.formTouchedCondition(control);
   }
 }
