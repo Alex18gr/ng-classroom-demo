@@ -21,4 +21,9 @@ export class StudentService {
     const url = this.apiUrl + 'classrooms/' + classroom.id + '/students/' + student.id;
     return this.httpClient.put<Student>(url, student);
   }
+
+  deleteStudent(classroom: Classroom, student: Student) {
+    const url = this.apiUrl + 'classrooms/' + classroom.id + '/students/' + student.id;
+    return this.httpClient.delete<Student>(url);
+  }
 }

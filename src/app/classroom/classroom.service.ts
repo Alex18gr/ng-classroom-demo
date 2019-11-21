@@ -32,4 +32,9 @@ export class ClassroomService {
     const url = this.apiUrl + 'classrooms/' + classroom.id;
     return this.httpClient.put<Classroom>(url, classroom);
   }
+
+  deleteClassroom(classroom: Classroom) {
+    const url = this.apiUrl + 'classrooms/' + classroom.id;
+    return this.httpClient.delete<Classroom>(url);
+  }
 }

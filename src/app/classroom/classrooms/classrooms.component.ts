@@ -5,6 +5,7 @@ import {ClassroomEditModalComponent} from '../../shared/classroom-edit-modal/cla
 import {StudentEditModalComponent} from '../../shared/student-edit-modal/student-edit-modal.component';
 import {Student} from '../../models/student.model';
 import {Subscription} from 'rxjs';
+import {DeleteModalComponent} from '../../shared/delete-modal/delete-modal.component';
 
 @Component({
   selector: 'app-classrooms',
@@ -13,7 +14,7 @@ import {Subscription} from 'rxjs';
 })
 export class ClassroomsComponent implements OnInit, OnDestroy {
   @ViewChild('classroomEditModal', {static: false}) classroomEditModal: ClassroomEditModalComponent;
-  // @ViewChild('studentEditModal', {static: false}) studentEditModal: StudentEditModalComponent;
+  @ViewChild('deleteModal', {static: false}) deleteModal: DeleteModalComponent;
   classroomsList: Classroom[] = [];
   classroomDataChanged: Subscription;
 
@@ -44,5 +45,9 @@ export class ClassroomsComponent implements OnInit, OnDestroy {
     if (this.classroomDataChanged) {
       this.classroomDataChanged.unsubscribe();
     }
+  }
+
+  openDeleteModal(classroom: Classroom) {
+    this.deleteModal.showClassroomDeleteModal(classroom);
   }
 }

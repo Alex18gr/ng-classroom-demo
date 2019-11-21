@@ -4,7 +4,8 @@
       <div class="card shadow">
         <div class="card-body">
           <h3>Classrooms list</h3>
-          <app-classrooms-list [classrooms]="classroomsList" (editSelected)="openEditClassroomModal($event)"></app-classrooms-list>
+          <app-classrooms-list [classrooms]="classroomsList" (editSelected)="openEditClassroomModal($event)"
+           (deleteSelected)="openDeleteModal($event)"></app-classrooms-list>
           <div class="mt-2">
             <button class="btn btn-outline-success" (click)="openEditClassroomModal()">Create new classroom</button>
           </div>
@@ -19,4 +20,4 @@
 </div>
 
 <app-classroom-edit-modal #classroomEditModal (editFormSubmitted)="onDataSaved()"></app-classroom-edit-modal>
-<!--<app-student-edit-modal #studentEditModal (editFormSubmitted)="onDataSaved()"></app-student-edit-modal>-->
+<app-delete-modal #deleteModal (editFormSubmitted)="onDataSaved()"></app-delete-modal>
