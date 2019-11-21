@@ -13,6 +13,7 @@ import { NavbarComponent } from './home/navbar/navbar.component';
 import { ClassroomDetailsComponent } from './classroom/classroom-details/classroom-details.component';
 import { StudentDetailsComponent } from './student/student-details/student-details.component';
 import {HttpClientModule} from '@angular/common/http';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {HttpClientModule} from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

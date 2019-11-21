@@ -10,6 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class ClassroomsListComponent implements OnInit {
   @Input() classrooms: Classroom[];
   @Output() selectedClassroomChanged = new EventEmitter<Classroom>();
+  @Output() editSelected = new EventEmitter<Classroom>();
 
   constructor(private router: Router,
               private route: ActivatedRoute) { }

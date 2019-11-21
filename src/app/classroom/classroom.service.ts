@@ -20,4 +20,9 @@ export class ClassroomService {
     const url = this.apiUrl + 'classrooms/' + classroomId;
     return this.httpClient.get<Classroom>(url);
   }
+
+  saveClassroom(classroom: Classroom) {
+    const url = this.apiUrl + 'classrooms';
+    return this.httpClient.post<Classroom>(url, classroom);
+  }
 }
