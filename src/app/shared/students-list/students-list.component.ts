@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Student} from '../../models/student.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-students-list',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./students-list.component.css']
 })
 export class StudentsListComponent implements OnInit {
+  @Input() students: Student[];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  onStudentSelected(student: Student) {
+    this.router.navigate(['students', student.id]);
+  }
 }

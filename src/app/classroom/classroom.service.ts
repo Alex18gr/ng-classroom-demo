@@ -15,4 +15,9 @@ export class ClassroomService {
     const url = this.apiUrl + 'classrooms';
     return this.httpClient.get<Classroom[]>(url);
   }
+
+  getClassroom(classroomId: number) {
+    const url = this.apiUrl + 'classrooms/' + classroomId;
+    return this.httpClient.get<Classroom>(url);
+  }
 }

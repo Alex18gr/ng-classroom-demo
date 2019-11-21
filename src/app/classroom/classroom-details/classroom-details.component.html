@@ -1,3 +1,11 @@
-<p>
-  classroom-details works!
-</p>
+<div class="card">
+  <div class="card-body shadow" *ngIf="classroom">
+    <h2>{{classroom.name}}</h2>
+    <hr>
+    <strong>Students List</strong>
+    <app-students-list [students]="classroom.students"></app-students-list>
+    <div class="mt-2">
+      <button class="btn btn-outline-success">Add new Student</button>
+    </div>
+  </div>
+</div>
