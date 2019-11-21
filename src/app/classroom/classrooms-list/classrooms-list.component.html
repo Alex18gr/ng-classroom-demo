@@ -4,12 +4,19 @@
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Name</th>
+      <th scope="col">Actions</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let c of classrooms" (click)="onClassroomSelect(c)">
       <th scope="row">{{c.id}}</th>
       <td>{{c.name}}</td>
+      <td>
+        <div class="btn-group btn-group-sm" role="group">
+          <button class="btn btn-sm btn-warning">Edit</button>
+          <button class="btn btn-sm btn-danger">Delete</button>
+        </div>
+      </td>
     </tr>
     </tbody>
   </table>

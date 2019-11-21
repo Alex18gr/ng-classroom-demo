@@ -7,6 +7,7 @@
       <th scope="col">Last Name</th>
       <th scope="col">Grade</th>
       <th scope="col">Birth Date</th>
+      <th scope="col">Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -16,6 +17,12 @@
       <td>{{s.lastName}}</td>
       <td>{{s.grade}}</td>
       <td>{{s.birthDate | date: 'mediumDate'}}</td>
+      <td>
+        <div class="btn-group btn-group-sm" role="group">
+          <button class="btn btn-sm btn-warning">Edit</button>
+          <button class="btn btn-sm btn-danger">Delete</button>
+        </div>
+      </td>
     </tr>
     </tbody>
   </table>
