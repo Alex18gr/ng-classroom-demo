@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {ClassroomService} from '../classroom.service';
 import {Classroom} from '../../models/classroom.model';
 import {StudentEditModalComponent} from '../../shared/student-edit-modal/student-edit-modal.component';
@@ -18,7 +18,8 @@ export class ClassroomDetailsComponent implements OnInit, OnDestroy {
   classroom: Classroom;
   classroomDataChangedSubscription: Subscription;
 
-  constructor(private route: ActivatedRoute,
+  constructor(private router: Router,
+              private route: ActivatedRoute,
               private classroomService: ClassroomService) { }
 
   ngOnInit() {
@@ -34,6 +35,11 @@ export class ClassroomDetailsComponent implements OnInit, OnDestroy {
   private getClassroomData(classroomId: number) {
     this.classroomService.getClassroom(classroomId).subscribe((data: Classroom) => {
       this.classroom = data;
+    }, error => {
+      console.log(error);
+      if (error.status === 404) {
+        this.router.navigate(['classrooms']);
+      }
     });
   }
 

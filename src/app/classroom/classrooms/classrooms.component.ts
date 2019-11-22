@@ -38,7 +38,7 @@ export class ClassroomsComponent implements OnInit, OnDestroy {
   }
 
   onDataSaved() {
-    this.getClassrooms();
+    this.classroomService.classroomDataChanged.next();
   }
 
   ngOnDestroy(): void {
