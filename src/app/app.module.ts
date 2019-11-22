@@ -15,6 +15,8 @@ import { StudentDetailsComponent } from './student/student-details/student-detai
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import { DeleteModalComponent } from './shared/delete-modal/delete-modal.component';
+import {ToastContainerComponent} from './shared/toast/toast-container/toast-container.component';
+import {ToastComponent} from './shared/toast/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { DeleteModalComponent } from './shared/delete-modal/delete-modal.compone
     NavbarComponent,
     ClassroomDetailsComponent,
     StudentDetailsComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
+    ToastContainerComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,10 @@
 import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {Classroom} from '../../models/classroom.model';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ClassroomService} from '../../classroom/classroom.service';
 import {Student} from '../../models/student.model';
 import {StudentService} from '../../student/student.service';
+import {ToastService} from '../toast/toast.service';
+import {NotificationTypes, Toast, ToastActions} from '../toast/toast.model';
 
 declare var $: any;
 
@@ -23,7 +24,8 @@ export class StudentEditModalComponent implements OnInit {
   currentClassroom: Classroom;
   title = '';
 
-  constructor(private studentService: StudentService) { }
+  constructor(private studentService: StudentService,
+              private toastService: ToastService) { }
 
   ngOnInit() {
     this.initForm();
@@ -99,10 +101,22 @@ export class StudentEditModalComponent implements OnInit {
     this.studentService.saveStudent(this.currentClassroom, this.currentStudent).subscribe((data: Student) => {
         this.editFormSubmitted.emit(data);
         console.log(data);
+        this.toastService.addToast(new Toast({
+          title: 'Student Saved Successfully',
+          message: `Student ${data.firstName} ${data.lastName} saved successfully to classroom ${this.currentClassroom.name}`,
+          notificationType: NotificationTypes.info,
+          action: ToastActions.created
+        }));
         this.hideModal();
       },
       (error => {
         this.savingData = false;
+        this.toastService.addToast(new Toast({
+          title: 'Student Save Failed',
+          message: `An error occurred while trying to save the student.`,
+          notificationType: NotificationTypes.danger,
+          action: ToastActions.failed
+        }));
       }));
   }
 
@@ -111,9 +125,21 @@ export class StudentEditModalComponent implements OnInit {
         this.editFormSubmitted.emit(data);
         console.log(data);
         this.hideModal();
+        this.toastService.addToast(new Toast({
+          title: 'Student Updated Successfully',
+          message: `Student ${data.firstName} ${data.lastName} updated successfully`,
+          notificationType: NotificationTypes.info,
+          action: ToastActions.updated
+        }));
       },
       (error => {
         this.savingData = false;
+        this.toastService.addToast(new Toast({
+          title: 'Student Update Failed',
+          message: `An error occurred while trying to update student ${this.currentStudent.firstName} ${this.currentStudent.lastName}.`,
+          notificationType: NotificationTypes.danger,
+          action: ToastActions.failed
+        }));
       }));
   }
 

@@ -3,6 +3,8 @@ import {Classroom} from '../../models/classroom.model';
 import {ClassroomService} from '../../classroom/classroom.service';
 import {Student} from '../../models/student.model';
 import {StudentService} from '../../student/student.service';
+import {ToastService} from '../toast/toast.service';
+import {NotificationTypes, Toast, ToastActions} from '../toast/toast.model';
 
 declare var $: any;
 
@@ -24,7 +26,8 @@ export class DeleteModalComponent implements OnInit {
   Classroom = Classroom;
 
   constructor(private classroomService: ClassroomService,
-              private studentService: StudentService) { }
+              private studentService: StudentService,
+              private toastService: ToastService) { }
 
   ngOnInit() {
   }
@@ -82,12 +85,24 @@ export class DeleteModalComponent implements OnInit {
     this.classroomService.deleteClassroom(this.deletingComponent as Classroom)
       .subscribe(() => {
         this.deletingData = false;
-          this.editFormSubmitted.emit();
+        this.toastService.addToast(new Toast({
+          title: 'Classroom Deleted Successfully',
+          message: `Classroom ${(this.deletingComponent as Classroom).name} deleted successfully.`,
+          notificationType: NotificationTypes.info,
+          action: ToastActions.deleted
+        }));
+        this.editFormSubmitted.emit();
         this.hideModal();
       },
-        error => {
-          this.deletingData = false;
-        });
+      error => {
+        this.deletingData = false;
+        this.toastService.addToast(new Toast({
+          title: 'Classroom Delete Failed',
+          message: `An error occurred while trying to delete classroom ${(this.deletingComponent as Classroom).name}.`,
+          notificationType: NotificationTypes.danger,
+          action: ToastActions.failed
+        }));
+      });
   }
 
   private deleteStudent() {
@@ -95,10 +110,24 @@ export class DeleteModalComponent implements OnInit {
     this.studentService.deleteStudent(this.currentClassroom, this.deletingComponent as Student)
       .subscribe(() => {
         this.deletingData = false;
+        this.toastService.addToast(new Toast({
+          title: 'Student Deleted Successfully',
+          message: `Student ${(this.deletingComponent as Student).firstName} ${(this.deletingComponent as Student).lastName}` +
+           `deleted successfully from classroom ${this.currentClassroom.name}.`,
+          notificationType: NotificationTypes.info,
+          action: ToastActions.deleted
+        }));
         this.editFormSubmitted.emit();
         this.hideModal();
       }, error => {
         this.deletingData = false;
+        this.toastService.addToast(new Toast({
+          title: 'Student Delete Failed',
+          message: `An error occurred while trying to delete student ${(this.deletingComponent as Student).firstName} ` +
+          `${(this.deletingComponent as Student).lastName}.`,
+          notificationType: NotificationTypes.danger,
+          action: ToastActions.failed
+        }));
       });
   }
 }
