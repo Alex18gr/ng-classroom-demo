@@ -24,17 +24,22 @@ export class ClassroomDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.classroomDataChangedSubscription = this.classroomService.classroomDataChanged
-        .subscribe(() => {
-          this.getClassroomData(parseInt(params.get('cid'), 10));
-        });
-      this.getClassroomData(parseInt(params.get('cid'), 10));
+      if (isNaN(+params.get('cid'))) {
+        this.router.navigate(['classrooms']);
+      } else {
+        this.classroomDataChangedSubscription = this.classroomService.classroomDataChanged
+          .subscribe(() => {
+            this.getClassroomData(parseInt(params.get('cid'), 10));
+          });
+        this.getClassroomData(parseInt(params.get('cid'), 10));
+      }
     });
   }
 
   private getClassroomData(classroomId: number) {
     this.classroomService.getClassroom(classroomId).subscribe((data: Classroom) => {
       this.classroom = data;
+      this.classroomService.selectedClassroom = this.classroom;
     }, error => {
       console.log(error);
       if (error.status === 404) {

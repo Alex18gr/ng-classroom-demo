@@ -8,6 +8,7 @@ import {Subject} from 'rxjs';
 })
 export class ClassroomService {
   classroomDataChanged = new Subject<any>();
+  selectedClassroom: Classroom;
 
   constructor(private httpClient: HttpClient) { }
 

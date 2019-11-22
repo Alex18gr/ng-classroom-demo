@@ -6,6 +6,7 @@ import {StudentEditModalComponent} from '../../shared/student-edit-modal/student
 import {Student} from '../../models/student.model';
 import {Subscription} from 'rxjs';
 import {DeleteModalComponent} from '../../shared/delete-modal/delete-modal.component';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-classrooms',
@@ -18,9 +19,22 @@ export class ClassroomsComponent implements OnInit, OnDestroy {
   classroomsList: Classroom[] = [];
   classroomDataChanged: Subscription;
 
-  constructor(private classroomService: ClassroomService) { }
+  constructor(private classroomService: ClassroomService,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
+    // if (this.route.children[0]) {
+    //   this.route.children[0].params.subscribe(params => {
+    //     if (this.route.children[0]) {
+    //       console.log('Current selected classroom: ' + parseInt(params.cid, 10));
+    //     } else {
+    //       console.log('No selected classroom');
+    //     }
+    //   });
+    // } else {
+    //   console.log('No selected classroom');
+    // }
+
     this.classroomDataChanged = this.classroomService.classroomDataChanged.subscribe((data) => {
       this.getClassrooms();
     });
