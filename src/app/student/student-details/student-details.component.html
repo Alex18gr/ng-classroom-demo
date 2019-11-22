@@ -9,6 +9,7 @@
 
       <div class="card shadow-sm">
         <div class="card-body">
+          <app-loading-spinner *ngIf="!dataLoaded"></app-loading-spinner>
           <div *ngIf="dataLoaded">
             <table class="table table-borderless">
               <tbody>

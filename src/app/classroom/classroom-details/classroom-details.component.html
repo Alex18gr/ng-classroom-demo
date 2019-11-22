@@ -1,4 +1,5 @@
 <div class="card">
+  <app-loading-spinner *ngIf="!classroom"></app-loading-spinner>
   <div class="card-body shadow" *ngIf="classroom">
     <h2>{{classroom.name}}</h2>
     <hr>

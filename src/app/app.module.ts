@@ -17,6 +17,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { DeleteModalComponent } from './shared/delete-modal/delete-modal.component';
 import {ToastContainerComponent} from './shared/toast/toast-container/toast-container.component';
 import {ToastComponent} from './shared/toast/toast/toast.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {ToastComponent} from './shared/toast/toast/toast.component';
     StudentDetailsComponent,
     DeleteModalComponent,
     ToastContainerComponent,
-    ToastComponent
+    ToastComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
