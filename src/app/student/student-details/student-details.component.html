@@ -2,7 +2,32 @@
   <div class="row">
     <div class="col-md-12">
       <div class="jumbotron">
-        <h3>Student Name</h3>
+        <div *ngIf="dataLoaded">
+          <h3>{{currentStudent.firstName}} {{currentStudent.lastName}}</h3>
+        </div>
+      </div>
+
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div *ngIf="dataLoaded">
+            <table class="table table-borderless">
+              <tbody>
+                <tr>
+                  <th scope="row">Birth Date</th>
+                  <td>{{currentStudent.birthDate | date: 'mediumDate' }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Grade</th>
+                  <td>{{currentStudent.grade}}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Classroom</th>
+                  <td><a [routerLink]="['/', 'classrooms', currentStudentClassroom.id]">{{currentStudentClassroom.name}}</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>

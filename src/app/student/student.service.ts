@@ -31,4 +31,14 @@ export class StudentService {
     const url = this.apiUrl + 'students';
     return this.httpClient.get<Student[]>(url);
   }
+
+  getStudent(studentId: number) {
+    const url = `${this.apiUrl}students/${studentId}`;
+    return this.httpClient.get<Student>(url);
+  }
+
+  getStudentClassroom(studentId: number) {
+    const url = this.apiUrl + `students/${studentId}/classroom`;
+    return this.httpClient.get<Classroom>(url);
+  }
 }
