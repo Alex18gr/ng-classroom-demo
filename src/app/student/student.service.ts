@@ -26,4 +26,9 @@ export class StudentService {
     const url = this.apiUrl + 'classrooms/' + classroom.id + '/students/' + student.id;
     return this.httpClient.delete<Student>(url);
   }
+
+  getAllStudents() {
+    const url = this.apiUrl + 'students';
+    return this.httpClient.get<Student[]>(url);
+  }
 }

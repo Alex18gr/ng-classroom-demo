@@ -10,9 +10,8 @@ const routes: Routes = [
   {path: 'classrooms', component: ClassroomsComponent, children: [
       {path: ':cid', component: ClassroomDetailsComponent}
     ]},
-  {path: 'students', component: StudentsComponent, children: [
-      {path: ':sid', component: StudentDetailsComponent}
-    ]}
+  {path: 'students', component: StudentsComponent},
+  {path: 'students/:sid', component: StudentDetailsComponent}
 ];
 
 @NgModule({

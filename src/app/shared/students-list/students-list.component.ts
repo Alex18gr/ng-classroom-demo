@@ -11,6 +11,7 @@ export class StudentsListComponent implements OnInit {
   @Input() students: Student[];
   @Output() editSelected = new EventEmitter<Student>();
   @Output() deleteSelected = new EventEmitter<Student>();
+  @Input() actionsEnabled = false;
 
   constructor(private router: Router) { }
 
