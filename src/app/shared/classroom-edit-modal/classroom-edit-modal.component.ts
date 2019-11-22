@@ -5,6 +5,7 @@ import {ClassroomService} from '../../classroom/classroom.service';
 import {NotificationTypes, Toast, ToastActions} from '../toast/toast.model';
 import {ToastService} from '../toast/toast.service';
 
+// This var symbol helps for using jQuery code in Typescript
 declare var $: any;
 
 @Component({
@@ -29,6 +30,9 @@ export class ClassroomEditModalComponent implements OnInit {
 
   }
 
+  /**
+   * initialize the edit classroom form besed on the optional provided classroom or for a new classroom
+   */
   initForm(classroom?: Classroom) {
     this.classroomForm = new FormGroup({
       name: new FormControl('', [
@@ -45,6 +49,9 @@ export class ClassroomEditModalComponent implements OnInit {
     }
   }
 
+  /**
+   * show the bootstrap modal using jQuery code and initialize the edit form
+   */
   showModal(classroom?: Classroom) {
     $(this.editModal.nativeElement).modal();
     if (classroom) {
@@ -57,6 +64,9 @@ export class ClassroomEditModalComponent implements OnInit {
     this.initForm(classroom);
   }
 
+  /**
+   * hides the modal and reset the modal component variables
+   */
   hideModal() {
     this.currentClassroom = null;
     this.savingData = false;
@@ -75,6 +85,9 @@ export class ClassroomEditModalComponent implements OnInit {
     }
   }
 
+  /**
+   * saves the editing classroom. Also used the toast service to provide feedback about the operation
+   */
   saveClassroom() {
     this.classroomService.saveClassroom(this.currentClassroom).subscribe((data: Classroom) => {
         this.editFormSubmitted.emit(data);

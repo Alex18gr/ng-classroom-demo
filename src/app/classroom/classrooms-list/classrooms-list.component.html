@@ -1,4 +1,5 @@
 <div class="border border-secondary rounded-lg p-3 table-responsive">
+<!--  the loading spinner is viewed until the classrooms are loaded -->
   <app-loading-spinner *ngIf="!classrooms"></app-loading-spinner>
   <table class="table table-hover" *ngIf="classrooms">
     <thead>

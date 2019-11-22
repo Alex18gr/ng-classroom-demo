@@ -32,20 +32,9 @@ export class DeleteModalComponent implements OnInit {
   ngOnInit() {
   }
 
-  // showModal(component?: Classroom | Student, currentClassroom?: Classroom) {
-  //   this.deletingComponent = component;
-  //   if (this.deletingComponent instanceof Classroom) {
-  //     this.title = 'Delete Classroom ' + this.deletingComponent.name;
-  //     this.message = 'Are you sure you want to delete classroom ' + this.deletingComponent.name + '?';
-  //   } else if (this.deletingComponent instanceof Student) {
-  //     this.currentClassroom = currentClassroom;
-  //     this.title = 'Delete Student ' + this.deletingComponent.firstName + ' ' + this.deletingComponent.lastName;
-  //     this.message = 'Are you sure you want to delete student ' + this.deletingComponent.firstName + ' '
-  //       + this.deletingComponent.lastName + '?';
-  //   }
-  //   $(this.deleteModal.nativeElement).modal();
-  // }
-
+  /**
+   * show the bootstrap modal using jQuery code for deleting the provided classroom
+   */
   showClassroomDeleteModal(component: Classroom) {
     this.deletingComponent = component;
     this.deleteClassroomMode = true;
@@ -54,6 +43,9 @@ export class DeleteModalComponent implements OnInit {
     $(this.deleteModal.nativeElement).modal();
   }
 
+  /**
+   * show the bootstrap modal using jQuery code for deleting the provided student
+   */
   showStudentDeleteModal(component: Student, currentClassroom: Classroom) {
     this.deletingComponent = component;
     this.deleteClassroomMode = false;
@@ -64,6 +56,9 @@ export class DeleteModalComponent implements OnInit {
     $(this.deleteModal.nativeElement).modal();
   }
 
+  /**
+   * hides the modal using jQuery code and reset the modal component values
+   */
   hideModal() {
     this.deletingComponent = null;
     this.currentClassroom = null;

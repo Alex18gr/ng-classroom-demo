@@ -1,5 +1,8 @@
 import {Student} from './student.model';
 
+/**
+ * the Classroom entity based on the proved model
+ */
 export class Classroom {
   public id: number;
   public name: string;

@@ -11,13 +11,16 @@
       </div>
       <div class="modal-body">
 
+        <!--        Angular Reactive Form -->
         <form [formGroup]="studentForm">
 
           <div class="form-group">
             <label for="firstNameField">First Name</label>
+<!--            ngClass is used to apply invalid field styling when it is not valid -->
             <input type="text" class="form-control"
                    [ngClass]="{'is-invalid': isInvalidControlCondition(studentForm.controls.firstName)}"
                    id="firstNameField" placeholder="Enter First Name" formControlName="firstName">
+<!--            for showing the validation errors -->
             <div class="invalid-feedback" *ngIf="isInvalidControlCondition(studentForm.controls.firstName)">
               {{getErrorsList(studentForm.controls.firstName)}}
             </div>
