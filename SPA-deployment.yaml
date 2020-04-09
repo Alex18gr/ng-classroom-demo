@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: classroom-ui
+spec:
+  selector:
+    matchLabels:
+      name: classroom-ui
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: classroom-ui
+    spec:
+      containers:
+        - name: classroom-ui
+          image: alexcio/ng-classroom-demo:v2
+          ports:
+            - containerPort: 80
