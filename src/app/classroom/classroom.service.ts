@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Classroom} from '../models/classroom.model';
 import {Subject} from 'rxjs';
+import {environment} from '../../environments/environment';
 
 /**
  * This service is responsible for the communication with the API and the CRUD operations for the Classrooms
@@ -20,7 +21,7 @@ export class ClassroomService {
   constructor(private httpClient: HttpClient) { }
 
   // the base url of the api
-  private apiUrl = 'http://localhost:8080/';
+  private apiUrl = environment.apiUrl;
 
   /**
    * get all the classrooms
