@@ -1,14 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    service-label-key: load-balancer-service-0
   name: loadbalancer-service
 spec:
   type: LoadBalancer
   ports:
-    - name: load-balancer-service-port
-      port: 80
+    - port: 4200
       protocol: TCP
+      targetPort: 4200
   selector:
-    deployment-label-key: classroom-ui-deployment-0
+    app: classroom-ui

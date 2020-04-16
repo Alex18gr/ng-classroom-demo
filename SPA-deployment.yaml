@@ -14,6 +14,7 @@ spec:
     spec:
       containers:
         - name: classroom-ui
-          image: alexcio/ng-classroom-demo:v2
-          ports:
-            - containerPort: 80
+          image: alexc/classroomui:latest
+          imagePullPolicy: Never
+#          ports:
+#            - containerPort: 80
