@@ -16,3 +16,5 @@ COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
 COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
 #EXPOSE 80
 #CMD ["service", "nginx", "start"]
+
+# image name: alexc/classroomui
