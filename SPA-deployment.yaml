@@ -2,19 +2,24 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: classroom-ui
+  labels:
+    app: classroom-ui
+    tier: frontend
 spec:
   selector:
     matchLabels:
-      name: classroom-ui
+      app: classroom-ui
+      tier: frontend
   replicas: 1
   template:
     metadata:
       labels:
-        name: classroom-ui
+        app: classroom-ui
+        tier: frontend
     spec:
       containers:
         - name: classroom-ui
           image: alexc/classroomui:latest
           imagePullPolicy: Never
-#          ports:
-#            - containerPort: 80
+          ports:
+            - containerPort: 4200

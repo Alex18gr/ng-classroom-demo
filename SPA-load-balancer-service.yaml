@@ -10,3 +10,4 @@ spec:
       targetPort: 4200
   selector:
     app: classroom-ui
+    tier: frontend
